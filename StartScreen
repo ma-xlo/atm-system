@@ -9,3 +9,80 @@ public class StartScreen{
         
     }
 }
+
+class Normal
+{  public String classe;
+   public void metodo()
+   {  classe = "Normal";
+      System.out.println(classe+".metodo()");
+   }
+};
+
+class FilhaNormal extends Normal
+{  public void metodo()
+   {  classe = "FilhaNormal";
+      System.out.println(classe+".metodo()");
+   }
+};
+
+abstract class Abstrata //não pode ser instanciada!
+{  public String classe;
+   public void metodo()
+   {  classe = "Abstrata";
+      System.out.println(classe+".metodo()");
+   }
+   public abstract void metodoAbstrato();
+};
+
+class FilhaAbstrata extends Abstrata
+{  public void metodoAbstrato()
+   {  classe = "FilhaAbstrata";
+      System.out.println(classe+".metodoAbstrato()");
+   }
+//   public void metodo()
+//   {  System.out.print("Chamando método do pai... ");
+//      super.metodo();
+//   }
+};
+
+interface Interface //interface!
+{  public String classe = "Interface"; //constante
+   public abstract void metodoAbstrato();
+   public default void metodoDefault()
+   {  System.out.println(classe+".metodoDefault()");  }
+};
+
+class FilhaInterface implements Interface //implements!
+{  public String classeFilhaInterface;
+   public void metodoAbstrato()
+   {  classeFilhaInterface = "FilhaInterface";
+      System.out.println(classeFilhaInterface+".metodoAbstrato()");
+   }
+};
+
+public class Main
+{  
+   public static void main(String[] args)
+   {  
+      Normal n; //"ponteiro" (implícito)
+      n = new Normal(); //instanciação
+      n.metodo();
+      n = new FilhaNormal(); //herança
+      n.metodo(); //polimorfismo
+      
+      Abstrata a;
+      //a = new Abstrata() -- ERRO!
+      a = new FilhaAbstrata();
+      a.metodo();
+      a.metodoAbstrato();
+      
+      System.out.println(Interface.classe+".atributo"); //atributo estático
+      Interface i;
+      //i = new Interface(); -- ERRO!
+      i = new FilhaInterface();
+      i.metodoDefault();
+      i.metodoAbstrato();
+      
+    }
+
+}
